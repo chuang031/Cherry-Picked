@@ -1,0 +1,167 @@
+
+
+.card_img{
+    object-fit: cover;
+ 
+   width: 230px;
+    border-radius: 16px;
+    background-Color: lightgrey;
+    grid-row-end: span 26;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    
+}
+
+.product_container{
+    margin: 15px 10px;
+    padding: 0;
+    border-radius: 16px;
+
+
+}
+.products {
+ margin: 0;
+ padding: 0;
+ width: 80vw ;
+ background-color: white ;
+ position: absolute ;
+ left: 50% ;
+ transform: translateX(-50%) ;
+ display: grid ;
+ grid-template-columns: repeat(auto-fill, 250px) ;
+ grid-row : 10px ;
+ justify-content: center;
+
+
+}
+.small{
+
+    grid-row-end: span 26;
+}
+.medium{
+    grid-row-end: span 33;
+}
+.large{
+    grid-row-end: span 45;
+}
+.img-container {
+    width: 100%;
+    height: 70%;
+}
+/* .card_img{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}
+.card{
+
+    
+    margin:10px;
+    border: 0px solid black;
+    overflow: hidden;
+    box-shadow: 0px 6px 18px -9px rgba(0, 0, 0, 0.75);
+    transition: transform 100ms ease-in;
+    cursor: pointer;
+    border-radius: 20px;
+    width: 100%;
+    height: 500px;
+    
+    
+    } */
+
+.link{
+        text-decoration: none;
+        color: black;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-weight: lighter;
+
+    opacity:1;
+    transition: 1s ease;
+ 
+  }
+  
+  .link:hover .card_img {
+    opacity:0.5;
+    transition: 1s ease;;
+
+  }    
+
+.card_img .title{
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+ 
+  .cherrypicked{
+    font-family: Georgia, arial, serif; 
+    font-size: 38px; 
+    color: #FF4742;
+     text-align: center;
+  }
+
+  .logo{
+  
+    object-fit: contain;
+
+    height: 100px;
+    width:10%
+  
+  }
+
+  .button-container{
+    display: flex;
+    justify-content: center;
+  }
+
+ 
+
+  /* CSS */
+  .create-products {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+  }
+  
+  .create-products:hover,
+  .create-products:active {
+    background-color: initial;
+    background-position: 0 0;
+    color: #FF4742;
+  }
+  
+  .create-products:active {
+    opacity: .5;
+  }
+
+.msg{
+    font-family: Georgia, arial, serif; 
+    font-size: 15px; 
+    color: #FF4742;
+     text-align: center;
+}
+ 

@@ -1,0 +1,177 @@
+.down-arrow {
+  cursor: pointer;
+  height: 100%
+}
+
+.profile-dropdown {
+  cursor: auto;
+  top: 50px;
+  right:10px;
+  position: fixed;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  background-color: white;
+  border-radius: 8px;
+  padding: 10px 20px;  
+  width: auto;
+  margin-top: 20px;
+  z-index: 10;
+  list-style-type: none;
+  font-family: Georgia, arial, serif;
+  font-size: 14px;
+  font-weight: 500;
+ color: #FF4742;;
+
+  
+}
+
+li{
+  margin: 5px 5px 5px;
+}
+
+
+.profile-dropdown::before {
+  content: '';
+  top: -5px;
+  height: 20px;
+  width: 20px;
+  background: rgb(53, 49, 49);
+  transform: rotate(45deg);
+}
+
+.profile-dropdown.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: 500ms ease;
+}
+
+.profile-dropdown.inactive {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: 500ms ease;
+}
+
+.profile-dropdown.active span {
+  width: 24px;
+  height: 1px;
+  background: gray;
+}
+
+.hidden {
+  display: none;
+}
+
+
+
+.left-side {
+  display: flex;
+  height: 48px;
+  min-width: 123px;
+  width: 20%;
+  align-items: center;
+  justify-content: space-evenly;
+
+}
+
+.right-side {
+  display: flex;
+  height: 48px;
+  min-width: 300px;
+  width: 20%;
+  align-items: center;
+  justify-content: flex-end;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+
+}
+
+
+
+
+.profile {
+  display: flex;
+  align-items: right;
+  background-color: red;
+}
+
+nav{
+  display: flex;
+  justify-content: space-around;
+}
+
+.cherryhome{
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.nav-container{
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.profile-container{
+  display: flex;
+align-items: flex-end;
+  
+}
+
+.user-profile{
+  max-width: 50px;
+  max-height: 50px;
+  clip-path: circle();
+ 
+
+}
+
+.profile:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.18);
+}
+
+.down-arrow{
+  max-width: 10px;
+  max-height: 10px;
+  background-color: white;
+  color: white
+}
+
+.button {
+  background: #FF4742;
+  border: 1px solid #FF4742;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 5px;
+  min-height: 30px;
+  outline: 0;
+  padding: 12px 14px; 
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+margin: 5px 5px 5px;
+
+}
+
+.button:hover,
+.button:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #FF4742;
+}
+
+.button:active {
+  opacity: .5;
+}
+
