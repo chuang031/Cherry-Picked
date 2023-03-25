@@ -1,3 +1,5 @@
+import { faArrowRightFromFile } from "@fortawesome/free-solid-svg-icons"
+
 const LOAD_MANY_PRODUCTS = "products/LOAD_MANY_PRODUCTS"
 
 const LOAD_ONE_PRODUCT = "products/LOAD_ONE_PRODUCT"
@@ -46,12 +48,19 @@ export const getSingleProduct = (productId)=> async(dispatch)=>{
 
 export const addAProduct = (products)=> async (dispatch) =>{
 
+    const {title,detail,price,url,imageUrl} = products
+    const formData = new FormData()
+
+    formData.append("title",title)
+    formData.append("detail", detail)
+    formData.append("price", price)
+    formData.append("url", url)
+    formData.append("imageUrl", imageUrl)
+
     const response = await fetch("/api/products/",{
     method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(products)
+
+    body: formData
 });
 
 

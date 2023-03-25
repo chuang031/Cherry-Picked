@@ -5,6 +5,8 @@ from ..models.product import Product, db
 from ..forms.product_form import ProductForm
 from ..forms.review_form import ReviewForm
 from app.models.review import Review, db
+from app.awsS3 import (
+    upload_file_to_s3, get_unique_filename, allow_file)
 
 product_routes = Blueprint('products', __name__)
 
@@ -38,14 +40,38 @@ def get_product(id):
 def create_product():
 
     form = ProductForm()
-
+  
     form['csrf_token'].data = request.cookies['csrf_token']
+
+    if "imageUrl" in request.files:
+        imageFile = request.files['imageUrl']
+    else:
+        imageFile = ""
+
+    if(imageFile):
+        if not allow_file(imageFile.filename):
+            return {"errors": "file type not permitted"}, 400
+
+        imageFile.filename = get_unique_filename(imageFile.filename)
+        
+
+        upload = upload_file_to_s3(imageFile)
+      
+        if "url" not in upload:
+            return {"errors": "failed to upload into s3"}, 400
+
+        url = upload['url']
 
     if form.validate_on_submit():
         data = form.data
+
         new_product = Product(brandId=current_user.get_id(),
-                      title = data['title'], detail=data['detail'], url=data['url'], imageUrl=data['imageUrl'], price = data['price'])
-        form.populate_obj(new_product)
+                      title = data['title'],
+                        detail=data['detail'],
+                        url=data['url'],
+                        imageUrl = url,
+                        price = data['price'])
+       
         db.session.add(new_product)
         db.session.commit()
         return new_product.to_dict()

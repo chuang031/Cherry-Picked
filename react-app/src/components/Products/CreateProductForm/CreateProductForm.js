@@ -11,6 +11,8 @@ function CreateProductForm() {
     const [price, setPrice] = useState("");
     const history = useHistory();
     const [errors, setErrors] = useState([]);
+  
+    const [imageLoading, setImageLoading] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -21,6 +23,7 @@ function CreateProductForm() {
 
         let data = await dispatch(addAProduct(payload));
 
+        console.log(payload, 'payload')
         if (data.errors) {
             setErrors([...Object.values(data.errors)]);
         } else {
@@ -30,7 +33,7 @@ function CreateProductForm() {
 
     return (
         <section className="create-product-form">
-            <form className="create-form max-h-full w-full sticky inset-0 hidden lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20 " onSubmit={handleSubmit}>
+            <form className="create-form max-h-full w-full sticky inset-0 hidden lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20 " onSubmit={handleSubmit} encType="multipart/form-data">
             <h1 className="create text-center mb-10 font-bold text-3xl lg:text-4xl">Create your Product!</h1>
                 <ul>
                     {errors.map((error, idx) => (
@@ -76,12 +79,14 @@ function CreateProductForm() {
                 <label >
                     Image Url
                     <input
-                        type="text"
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setImageUrl(e.target.files[0])}
                         className="product-input w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                        value={imageUrl}
-                        required
-                        onChange={(e) => setImageUrl(e.target.value)}
+                
                     />
+                    
+    
                 </label>
 
                 <label >
