@@ -43,7 +43,7 @@ function CreateProductForm() {
                     ))}
                 </ul>
 
-                <label className="input-label text-black">
+                <label className="input-label text-black ml-0">
                     Title
                     <input 
                         type="text"
@@ -54,8 +54,8 @@ function CreateProductForm() {
                     />
                 </label>
 
-                <label className="input-label text-black">
-                    Product Details
+                <label className="input-label text-black ml-0">
+                Product Details
                     <input 
                         type="text"
                         className="product-input w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
@@ -76,18 +76,7 @@ function CreateProductForm() {
                     />
                 </label>
 
-                <label >
-                    Image Url
-                    <input
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => setImageUrl(e.target.files[0])}
-                        className="product-input w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                
-                    />
-                    
-    
-                </label>
+
 
                 <label >
                     Link
@@ -99,6 +88,19 @@ function CreateProductForm() {
                         onChange={(e) => setUrl(e.target.value)}
                     />
                 </label >
+
+                <label >
+                Upload Image
+                <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImageUrl(e.target.files[0])}
+                className="product-input w-full text-gray-900  p-2 rounded-lg focus:outline-none focus:shadow-outline"
+                />
+                
+
+            </label>
+
                 <button className="mt-5 text-sm create-button bg-rose-500" type="submit">
                     Create new Product!
                 </button>
