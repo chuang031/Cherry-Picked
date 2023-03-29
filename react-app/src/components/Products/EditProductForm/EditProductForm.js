@@ -24,7 +24,7 @@ const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
     const payload = { title, detail, price, url, imageUrl };
-
+console.log(payload)
     let data = await dispatch(editAProduct(productId, payload));
 
     if (data.errors) {
@@ -78,18 +78,6 @@ return (
                     onChange={(e) => setPrice(e.target.value)}
                 />
             </label>
-
-            <label>
-                Image Url
-                <input
-                    type="text"
-                    className="product-input w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
-                    value={imageUrl}
-                    required
-                    onChange={(e) => setImageUrl(e.target.value)}
-                />
-            </label>
-
             <label>
                 Link
                 <input
@@ -100,6 +88,20 @@ return (
                     onChange={(e) => setUrl(e.target.value)}
                 />
             </label>
+            <label >
+            Upload Image
+            <input
+            type="file"
+           
+            accept="image/*"
+            onChange={(e) => setImageUrl(e.target.files[0])}
+            className="product-input w-full text-gray-900  p-2 rounded-lg focus:outline-none focus:shadow-outline"
+            />
+            
+
+        </label>
+
+
             <button className="create-button mt-5 text-sm bg-rose-500" type="submit">
                 Edit Your Product!
             </button>

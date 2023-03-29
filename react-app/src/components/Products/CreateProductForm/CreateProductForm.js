@@ -12,7 +12,6 @@ function CreateProductForm() {
     const history = useHistory();
     const [errors, setErrors] = useState([]);
   
-    const [imageLoading, setImageLoading] = useState(false);
 
     const dispatch = useDispatch();
 

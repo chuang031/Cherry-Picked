@@ -75,12 +75,20 @@ if (response.ok){
 }
 
 export const editAProduct = (id, productData) => async (dispatch) =>{
+
+    const {title,detail,price,url,imageUrl} = productData
+    const formData = new FormData()
+
+    formData.append("title",title)
+    formData.append("detail", detail)
+    formData.append("price", price)
+    formData.append("url", url)
+    formData.append("imageUrl", imageUrl)
+
     const response = await fetch(`/api/products/${id}`,{
         method: 'PATCH',
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(productData)
+      
+        body: formData
     })
 
     if(response.ok){

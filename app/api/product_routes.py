@@ -85,13 +85,41 @@ def edit_product(id):
 
     form = ProductForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+  
+    if "imageUrl" in request.files:
+        imageFile = request.files['imageUrl']
+    else:
+        imageFile = ""
+
+    if(imageFile):
+        if not allow_file(imageFile.filename):
+            return {"errors": "file type not permitted"}, 400
+
+        imageFile.filename = get_unique_filename(imageFile.filename)
+        
+
+        upload = upload_file_to_s3(imageFile)
+      
+        if "url" not in upload:
+            return {"errors": "failed to upload into s3"}, 400
+
+        url = upload['url']
+
     if form.validate_on_submit():
+        
         data = form.data
+
         product = Product.query.get(id)
 
         for key, value in data.items():
             setattr(product, key, value)
+        
+
+        if url:
+            product.imageUrl = url
+        
         db.session.commit()
+
         return product.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
