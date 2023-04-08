@@ -50,7 +50,7 @@ function ProductDetailPage() {
     return (
         <div>
             <section>
-                <div class="mx-auto px-4 py-16 sm:px-6 lg:px-4">
+                <div class="mx-auto px-4 py-8 sm:px-6 lg:px-4">
                     <div class="grid grid-cols-1 lg:h-screen lg:grid-cols-2 max-h-96 ">
                         <div class="relative lg:py-16 -z-10 ">
                             <div class="relative h-64 sm:h-80 lg:h-full">
@@ -158,20 +158,21 @@ function ProductDetailPage() {
                          
                         </div>
 
-                        {!sessionUser.isBrand && (
-                            <h2 className="h-fit p-5 font-serif text-transparent text-center text-l bg-clip-text bg-gradient-to-r from-red-400 to-pink-600">
-                                *Only Brands can delete or edit a
-                                Product*
-                            </h2>
-                        )}
+                     
                     </div>
+                    {!sessionUser.isBrand && (
+                        <h2 className="h-fit mt-14 font-serif text-transparent  text-center text-l bg-clip-text bg-gradient-to-r from-red-400 to-pink-600">
+                            *Only Brands can delete or edit a
+                            Product*
+                        </h2>
+                    )}
                 </div>
             </section>
 
             <div class="">
                 {sessionUser.isBrand && (
-                    <h2 className="h-fit p-5 font-serif text-transparent text-center text-l bg-clip-text bg-gradient-to-r from-red-400 to-pink-600">
-                        {" "}
+                    <h2 className="h-fit mt-14 font-serif text-transparent text-center text-l bg-clip-text bg-gradient-to-r from-red-400 to-pink-600">
+                     
                         * You must be a Customer to Create a Review! *
                     </h2>
                 )}

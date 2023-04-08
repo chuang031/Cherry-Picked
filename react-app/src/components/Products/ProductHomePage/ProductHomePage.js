@@ -24,12 +24,17 @@ const ProductHomePage = () => {
         history.push("/productform");
     };
     return (
-        <div >
+        <div className="h-fit p-5 font-serif text-transparent text-center bg-clip-text bg-gradient-to-r from-red-400 to-pink-600 " >
      
-            <h1 className="h-fit p-5 font-serif text-transparent text-center text-5xl bg-clip-text bg-gradient-to-r from-red-400 to-pink-600 ">Cherry Picked </h1> 
-            <a href='https://github.com/chuang031/CherryPicked'>
-            <h1 className="about -fit p-5 font-serif text-transparent text-center text-sm bg-clip-text bg-gradient-to-r from-red-400 to-pink-600 ">  © 2023 Cherry Picked | About Me </h1>
+            <h1 className=" text-5xl mb-5" >Cherry Picked </h1> 
+            <a  href='https://github.com/chuang031/CherryPicked'>
+            <h1 >  © 2023 Cherry Picked | About Me </h1>
             </a>
+            <div>
+           
+            </div>
+
+
 
             <div className="button-container m-10">
             {sessionUser.isBrand &&(
@@ -61,10 +66,11 @@ const ProductHomePage = () => {
            
                     </NavLink>
                 </div>
+         
             ))}
-            </div>
 
-   
+            </div>
+       
         </div>
     );
 };
