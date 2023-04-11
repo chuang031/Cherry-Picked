@@ -26,8 +26,8 @@ function ProfilePage() {
                             </div>
                         </div>
                     </div>
-                    {/*
-                    <div class='flex items-center'>
+                    
+                    <div class='flex items-center justify-center'>
                     <label>
                     <input
                     type="file"
@@ -38,7 +38,6 @@ function ProfilePage() {
                     </label>
               
                     </div>
-                                */}
                     <div class="text-center mt-12">
                         <h3 class="text-3xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                             {!sessionUser.isBrand && (

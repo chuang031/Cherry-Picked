@@ -20,6 +20,8 @@ import ProductReviewslist from "./components/Reviews/ProductReviewsList/ProductR
 function App() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
+    const [product,setProduct] = useState([])
+    const [query, setQuery] = useState("")
     useEffect(() => {
         dispatch(authenticate()).then(() => setIsLoaded(true));
        dispatch(getAllCustomers())
@@ -31,7 +33,7 @@ function App() {
  
     return (
         <>
-            <Navigation isLoaded={isLoaded} />
+            <Navigation isLoaded={isLoaded} product={product} setProduct={setProduct} query={query} setQuery={setQuery} />
             {isLoaded && (
                 <Switch>
                     <Route path="/login">
@@ -43,7 +45,7 @@ function App() {
                     </Route>
 
                     <ProtectedRoute exact path="/">
-                        <ProductHomePage />
+                        <ProductHomePage product={product} query={query} />
                     </ProtectedRoute>
 
                     <ProtectedRoute exact path="/profile">

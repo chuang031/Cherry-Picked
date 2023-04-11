@@ -7,14 +7,14 @@ import './ProductHomePage.css'
 import { getAllUsers } from "../../../store/user";
 import { getAllCustomers } from "../../../store/customer";
 
-const ProductHomePage = () => {
+const ProductHomePage = ({product, query}) => {
     const history = useHistory();
     const dispatch = useDispatch();
-
     const allProducts = useSelector((state) => Object.values(state.product));
     useEffect(() => {
         dispatch(getAllProducts());
         dispatch(getAllCustomers())
+        
     }, [dispatch]);
    
   
@@ -26,7 +26,6 @@ const ProductHomePage = () => {
     return (
         <div className="h-fit p-5 font-serif text-transparent text-center bg-clip-text bg-gradient-to-r from-red-400 to-pink-600 " >
      
-            <h1 className=" text-5xl mb-5" >Cherry Picked </h1> 
             <a  href='https://github.com/chuang031/CherryPicked'>
             <h1 >  © 2023 Cherry Picked | About Me </h1>
             </a>
@@ -54,7 +53,8 @@ const ProductHomePage = () => {
                 </div>
 
             <div className="products ">
-            {allProducts.map(({ id, imageUrl, title, price }, idx) => (
+
+            {(product.length && query !== '')&& (product.map(({ id, imageUrl, title, price }, idx) => (
                 <div key={id} className={'medium'}>
 
                 <NavLink  className= 'link' to ={`/products/${id}`}>
@@ -67,7 +67,22 @@ const ProductHomePage = () => {
                     </NavLink>
                 </div>
          
-            ))}
+            )))}
+
+            {((!product.length) || (query === '')) && (allProducts.map(({ id, imageUrl, title, price }, idx) => (
+                <div key={id} className={'medium'}>
+
+                <NavLink  className= 'link' to ={`/products/${id}`}>
+                    <div className="img-container">
+                        <img className="card_img" src={imageUrl}></img>
+                       
+                        <div className="title font-serif ">{title} ${(Math.round(price * 100)/100)}</div>
+            </div>
+           
+                    </NavLink>
+                </div>
+         
+            )))}
 
             </div>
        
