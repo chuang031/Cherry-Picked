@@ -25,7 +25,7 @@ function App() {
     useEffect(() => {
         dispatch(authenticate()).then(() => setIsLoaded(true));
        dispatch(getAllCustomers())
-    //    dispatch(getProductReview())
+       dispatch(getProductReview())
        dispatch(getAllProducts())
     }, [dispatch]);
 
