@@ -31,6 +31,7 @@ function CreateProductForm() {
     };
 
     return (
+        <>
         <section className="create-product-form">
             <form className="create-form max-h-full w-full sticky inset-0 hidden lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 my-2 lg:my-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20 " onSubmit={handleSubmit} encType="multipart/form-data">
             <h1 className="create text-center mb-10 font-bold text-3xl lg:text-4xl">Create your Product!</h1>
@@ -105,6 +106,7 @@ function CreateProductForm() {
                 </button>
             </form>
         </section>
+        </>
     );
 }
 

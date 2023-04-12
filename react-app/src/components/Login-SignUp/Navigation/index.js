@@ -18,9 +18,8 @@ function Navigation({ isLoaded, product, setProduct, query, setQuery }) {
     const allProducts = useSelector((state) => Object.values(state.product));
 
     const dispatch = useDispatch();
-    //    const [query, setQuery] = useState("")
-    //    const [product,setProduct] = useState([])
-const location = useLocation()
+
+    const location = useLocation();
 
     useEffect(() => {
         if (!product.length) {
@@ -67,19 +66,21 @@ const location = useLocation()
                     </NavLink>
                 </div>
 
-{location.pathname=== '/' && (<div className="middle-container w-full">
-                    <div class="relative ml-8">
-                        <i class="absolute fa fa-search text-gray-400 top-5 left-4"></i>
-                        <input
-                            type="text"
-                            class="bg-gray-100 h-14 w-full px-12 rounded-full focus:outline-none hover:cursor-pointer"
-                            placeholder="Search"
-                            onChange={(e) => {
-                                setQuery(e.target.value);
-                            }}
-                        />
+                {location.pathname === "/" && (
+                    <div className="middle-container w-full">
+                        <div class="relative ml-8">
+                            <i class="absolute fa fa-search text-gray-400 top-5 left-4"></i>
+                            <input
+                                type="text"
+                                class="bg-gray-100 h-14 w-full px-12 rounded-full focus:outline-none hover:cursor-pointer"
+                                placeholder="Search"
+                                onChange={(e) => {
+                                    setQuery(e.target.value);
+                                }}
+                            />
+                        </div>
                     </div>
-                </div>)}
+                )}
 
                 <div className="right-side min-w-1">
                     {!sessionUser && (
@@ -109,7 +110,7 @@ const location = useLocation()
 
                     {sessionUser && (
                         <div className="profile-container">
-                            <NavLink exact to="/profile">
+                            <NavLink exact to={`/users/${sessionUser.id}`}>
                                 <img
                                     className="user-profile"
                                     src={

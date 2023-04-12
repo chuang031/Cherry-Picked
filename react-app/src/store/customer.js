@@ -1,4 +1,6 @@
-const LOAD_OTHER_CUSTOMERS = "user/LOAD_OTHER_CUSTOMERS";
+const LOAD_OTHER_CUSTOMERS = "users/LOAD_OTHER_CUSTOMERS";
+
+const LOAD_ONE_USER = 'users/LOAD_ONE_USER'
 
 const loadOtherUsers = (customers) => {
   return {
@@ -6,6 +8,7 @@ const loadOtherUsers = (customers) => {
     customers,
   };
 };
+
 
 
 export const getAllCustomers = ()=>async(dispatch)=>{
@@ -20,6 +23,8 @@ export const getAllCustomers = ()=>async(dispatch)=>{
     
 
 }
+
+
 
 const defaultState = {};
 

@@ -25,7 +25,7 @@ function App() {
     useEffect(() => {
         dispatch(authenticate()).then(() => setIsLoaded(true));
        dispatch(getAllCustomers())
-       dispatch(getProductReview())
+    //    dispatch(getProductReview())
        dispatch(getAllProducts())
     }, [dispatch]);
 
@@ -48,7 +48,7 @@ function App() {
                         <ProductHomePage product={product} query={query} />
                     </ProtectedRoute>
 
-                    <ProtectedRoute exact path="/profile">
+                    <ProtectedRoute exact path="/users/:userId">
                 <ProfilePage/>
                 </ProtectedRoute>
 
