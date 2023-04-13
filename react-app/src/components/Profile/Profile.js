@@ -28,7 +28,7 @@ function ProfilePage() {
     };
 
     return (
-        <div onSubmit={handleSubmit}>
+        <div >
             <div className="container mx-auto pt-80 px-4">
                 <div className=" flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
                     <div className="flex flex-wrap justify-center items-center">
@@ -45,8 +45,9 @@ function ProfilePage() {
                             </div>
                         </div>
                     </div>
-
-                    <div className="flex items-center justify-center mt-4">
+                    
+                    <form onSubmit={handleSubmit}>
+                    <div  className="flex items-center justify-center mt-4">
                         <label>
                             <input
                                 className="ml-20"
@@ -61,10 +62,13 @@ function ProfilePage() {
                     <button
                     className=" mt-5 create-button w-32 text-sm bg-rose-500  "
                     type="submit"
+                    
                 >
                     Upload Image
                 </button>
                 </div>
+                </form>
+
                     <div className="text-center mt-12">
                         <h3 className="text-3xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                             {!sessionUser.isBrand && (
