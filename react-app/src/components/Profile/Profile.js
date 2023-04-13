@@ -13,14 +13,12 @@ function ProfilePage() {
     const { userId } = useParams();
     const dispatch = useDispatch();
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
         const payload = { imageUrl };
-        
+
         let data = await dispatch(editAUser(userId, payload));
-        
 
         if (data.errors) {
             setErrors([...Object.values(data.errors)]);
@@ -29,9 +27,8 @@ function ProfilePage() {
         }
     };
 
-
     return (
-        <form  onSubmit={handleSubmit}>
+        <div onSubmit={handleSubmit}>
             <div className="container mx-auto pt-80 px-4">
                 <div className=" flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
                     <div className="flex flex-wrap justify-center items-center">
@@ -49,7 +46,7 @@ function ProfilePage() {
                         </div>
                     </div>
 
-                    <div className="flex items-center justify-center">
+                    <div className="flex items-center justify-center mt-4">
                         <label>
                             <input
                                 className="ml-20"
@@ -58,14 +55,16 @@ function ProfilePage() {
                                 onChange={(e) => setImageUrl(e.target.files[0])}
                             />
                         </label>
-                        <button
-                        className="mt-5 text-sm create-button bg-rose-500"
-                        type="submit"
-                       
-                    >
-                        Upload Image
-                    </button>
+                   
                     </div>
+                    <div className="flex justify-center">
+                    <button
+                    className=" mt-5 create-button w-32 text-sm bg-rose-500  "
+                    type="submit"
+                >
+                    Upload Image
+                </button>
+                </div>
                     <div className="text-center mt-12">
                         <h3 className="text-3xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                             {!sessionUser.isBrand && (
@@ -120,8 +119,7 @@ function ProfilePage() {
                     </div>
                 </div>
             </footer>
-       
-        </form>
+        </div>
     );
 }
 
