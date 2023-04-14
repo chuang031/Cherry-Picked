@@ -67,7 +67,10 @@ function ProductDetailPage() {
 
                             <div class="overflow-hidden rounded-lg shadow transition hover:shadow-lg p-14">
                                 <h2 class="bg-slate-100 py-1 px-2 text-rose-500 uppercase tracking-wide text-sm font-bold inline-block rounded shadow mb-10">
+                                <NavLink exact to= {`/users/${product.brandId.toFixed()}`}>
+                                
                                     {productAuthor?.brandName}
+                                    </NavLink>
                                 </h2>
                                 <article>
                                     <h1 class="text-slate-900 text-center mb-10 font-bold text-3xl lg:text-4xl">

@@ -7,11 +7,16 @@ import { editAUser, getOneUserThunk } from "../../store/session";
 
 function ProfilePage() {
     const sessionUser = useSelector((state) => state.session.user);
+
     const [imageUrl, setImageUrl] = useState("");
     const [errors, setErrors] = useState([]);
     const history = useHistory();
     const { userId } = useParams();
+    const specificUser = useSelector(
+        (state) => Object.values(state.customer)[userId - 1]
+    );
     const dispatch = useDispatch();
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,60 +33,75 @@ function ProfilePage() {
     };
 
     return (
-        <div >
+        <div>
             <div className="container mx-auto pt-80 px-4">
                 <div className=" flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
                     <div className="flex flex-wrap justify-center items-center">
                         <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                             <div className="relative">
-                                <img
-                                    className="shadow-l rounded-full h-48 w-48"
-                                    src={
-                                        !sessionUser?.imageUrl
-                                            ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg-5Ga9DOBo0Xl-QkZK8TmKUH0IOcLmn4t_wTNzOIgBQPET6MM1uk8BI7v69cQ1nBNwJs&usqp=CAU"
-                                            : sessionUser.imageUrl
-                                    }
-                                ></img>
+                                {sessionUser.id === specificUser?.id && (
+                                    <img
+                                        className="shadow-l rounded-full h-48 w-48"
+                                        src={
+                                            !sessionUser?.imageUrl
+                                                ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg-5Ga9DOBo0Xl-QkZK8TmKUH0IOcLmn4t_wTNzOIgBQPET6MM1uk8BI7v69cQ1nBNwJs&usqp=CAU"
+                                                : sessionUser.imageUrl
+                                        }
+                                    ></img>
+                                )}
+
+                                {sessionUser.id !== specificUser?.id && (
+                                    <img
+                                        className="shadow-l rounded-full h-48 w-48"
+                                        src={
+                                            !specificUser?.imageUrl
+                                                ? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg-5Ga9DOBo0Xl-QkZK8TmKUH0IOcLmn4t_wTNzOIgBQPET6MM1uk8BI7v69cQ1nBNwJs&usqp=CAU"
+                                                : specificUser?.imageUrl
+                                        }
+                                    ></img>
+                                )}
                             </div>
                         </div>
                     </div>
-                    
-                    <form onSubmit={handleSubmit}>
-                    <div  className="flex items-center justify-center mt-4">
-                        <label>
-                            <input
-                                className="ml-20"
-                                type="file"
-                                accept="image/*"
-                                onChange={(e) => setImageUrl(e.target.files[0])}
-                            />
-                        </label>
-                   
-                    </div>
-                    <div className="flex justify-center">
-                    <button
-                    className=" mt-5 create-button w-32 text-sm bg-rose-500  "
-                    type="submit"
-                    
-                >
-                    Upload Image
-                </button>
-                </div>
-                </form>
+
+                    {sessionUser.id === specificUser?.id && (
+                        <form onSubmit={handleSubmit}>
+                            <div className="flex items-center justify-center mt-4">
+                                <label>
+                                    <input
+                                        className="ml-20"
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) =>
+                                            setImageUrl(e.target.files[0])
+                                        }
+                                    />
+                                </label>
+                            </div>
+                            <div className="flex justify-center">
+                                <button
+                                    className=" mt-5 create-button w-32 text-sm bg-rose-500  "
+                                    type="submit"
+                                >
+                                    Upload Image
+                                </button>
+                            </div>
+                        </form>
+                    )}
 
                     <div className="text-center mt-12">
                         <h3 className="text-3xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-                            {!sessionUser.isBrand && (
+                            {!specificUser?.isBrand && (
                                 <h1>
                                     {" "}
-                                    {sessionUser.firstName}{" "}
-                                    {sessionUser.lastName}
+                                    {specificUser?.firstName}{" "}
+                                    {specificUser?.lastName}
                                 </h1>
                             )}
                         </h3>
                         <div className="text-3xl leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
-                            {sessionUser.isBrand && (
-                                <h1> {sessionUser.brandName} </h1>
+                            {specificUser?.isBrand && (
+                                <h1> {specificUser?.brandName} </h1>
                             )}
                         </div>
                         <div className="flex justify-center items-center ">
@@ -100,17 +120,17 @@ function ProfilePage() {
             */}
                         </div>
                         <div className="mb-2 text-blueGray-600 mt-10">
-                            {sessionUser.username}
+                            {specificUser?.username}
                         </div>
                         <div className="mb-2 text-blueGray-600"></div>
-                        {sessionUser.email}
+                        {specificUser?.email}
                     </div>
                     <div className="mt-10 py-10 border-t border-blueGray-200 text-center">
                         <div className="flex flex-wrap justify-center">
                             <div className="w-full lg:w-9/12 px-4">
-                                {!sessionUser.isBrand && (
-                                    <div>{sessionUser.about}</div>
-                                )}
+                                {/* {!specificUser?.isBrand && (
+                                    <div>{specificUser?.about}</div>
+                                )}*/}
                             </div>
                         </div>
                     </div>

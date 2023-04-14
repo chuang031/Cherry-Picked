@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link, NavLink, useHistory, useParams } from "react-router-dom";
 import { getProductReview } from "../../../store/review";
 import { deleteAReview } from "../../../store/review";
 import { getSingleProduct } from "../../../store/product";
@@ -214,9 +214,10 @@ const ProductReviewslist = ({ product }) => {
                                         </div>
 
                                         <div class="mt-4 flex items-center gap-4">
+                                        
                                             {allUsers.map((user) =>
                                                 user.id === customerId ? (
-                                                    <>
+                                                    <NavLink exact to={`/users/${user.id.toFixed()}`} >
                                                         <img
                                                             className=" w-12 h-12 rounded-full border border-gray-100 shadow-sm "
                                                             src={
@@ -233,9 +234,10 @@ const ProductReviewslist = ({ product }) => {
                                                             <p>Customer</p>
                                                             
                                                         </div>
-                                                    </>
+                                                     </NavLink>
                                                 ) : null
                                             )}
+                                           
                                         </div>
                                     </span>
                                 </div>
