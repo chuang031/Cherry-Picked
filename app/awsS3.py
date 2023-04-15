@@ -1,11 +1,13 @@
+import eventlet
+eventlet.monkey_patch()
 import boto3
 import os
 import uuid
-import eventlet
+
 from botocore.exceptions import ClientError
 from boto3.s3.transfer import TransferConfig
 
-eventlet.monkey_patch()
+
 
 BUCKET_NAME = os.environ.get("S3_BUCKET")
 S3_LOCATION = f"https://{BUCKET_NAME}.s3.amazonaws.com/"
