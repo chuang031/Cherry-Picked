@@ -13,10 +13,9 @@ import EditReviewForm from "../../Reviews/EditReviewForm/EditReviewForm";
 
 function ProductDetailPage() {
     const { productId } = useParams();
-    // const allProducts = useSelector((state)=> state.product)
-    // const specificProduct = allProducts[productId]
+
     const sessionUser = useSelector((state) => state.session.user);
-    //    const productAuthor = useSelector(state=> state.user[specificProduct.brandId])
+
     const history = useHistory();
     const dispatch = useDispatch();
     useEffect(() => {
