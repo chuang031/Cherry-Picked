@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { editAUser, getOneUserThunk } from "../../store/session";
-
+import Chat from "../Chat/chat";
 function ProfilePage() {
     const sessionUser = useSelector((state) => state.session.user);
 
@@ -88,7 +88,12 @@ function ProfilePage() {
                             </div>
                         </form>
                     )}
-
+                    <div className="flex justify-center">
+                    <NavLink 
+                    exact to= '/chat'
+                    className=" mt-5 create-button w-32 text-sm bg-rose-500 flex justify-center "
+                    > Let's Chat </NavLink>
+                    </div>
                     <div className="text-center mt-12">
                         <h3 className="text-3xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                             {!specificUser?.isBrand && (

@@ -17,6 +17,7 @@ import { getAllCustomers } from "./store/customer";
 import { getProductReview } from "./store/review";
 import { getAllProducts } from "./store/product";
 import ProductReviewslist from "./components/Reviews/ProductReviewsList/ProductReviewsList";
+import Chat from "./components/Chat/chat";
 function App() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
@@ -46,6 +47,10 @@ function App() {
 
                     <ProtectedRoute exact path="/">
                         <ProductHomePage product={product} query={query} />
+                    </ProtectedRoute>
+
+                    <ProtectedRoute exact path="/chat">
+                    <Chat/>
                     </ProtectedRoute>
 
                     <ProtectedRoute exact path="/users/:userId">
