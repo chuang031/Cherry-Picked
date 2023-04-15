@@ -8,6 +8,7 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
     const user = useSelector(state => state.session.user)
 
+
     useEffect(() => {
         // open socket connection
         // create websocket
