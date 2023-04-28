@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { editAUser, getOneUserThunk } from "../../store/session";
 import Chat from "../Chat/chat";
+import { faL } from "@fortawesome/free-solid-svg-icons";
+
+
 function ProfilePage() {
     const sessionUser = useSelector((state) => state.session.user);
 
@@ -16,8 +19,8 @@ function ProfilePage() {
         (state) => Object.values(state.customer)[userId - 1]
     );
     const dispatch = useDispatch();
-
-
+    const [buttonStatus, setButtonStatus] = useState(false)
+    console.log(specificUser.username, 'id')
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
@@ -31,6 +34,14 @@ function ProfilePage() {
             history.push(`/users/${userId}`);
         }
     };
+
+    const handleClick= ()=>{
+        if (!buttonStatus){
+            setButtonStatus(true)
+        } else{
+            setButtonStatus(false)
+        }
+    }
 
     return (
         <div>
@@ -88,12 +99,16 @@ function ProfilePage() {
                             </div>
                         </form>
                     )}
-                    <div className="flex justify-center">
-                    <NavLink 
-                    exact to= '/chat'
+                   <div className="flex justify-center">
+
+                  {!buttonStatus ?  (<button onClick={handleClick}
                     className=" mt-5 create-button w-32 text-sm bg-rose-500 flex justify-center "
-                    > Let's Chat </NavLink>
-                    </div>
+                    > Let's Chat 
+                    </button>): 
+                <div><Chat userId={specificUser?.id} username= {specificUser?.username}/></div>
+                }
+
+                    </div> 
                     <div className="text-center mt-12">
                         <h3 className="text-3xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
                             {!specificUser?.isBrand && (

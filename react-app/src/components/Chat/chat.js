@@ -1,18 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { io } from 'socket.io-client';
 let socket;
 
-const Chat = () => {
+const Chat = ({userId, username}) => {
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
     const user = useSelector(state => state.session.user)
-
+    const dispatch= useDispatch()
+    console.log(messages)
 
     useEffect(() => {
         // open socket connection
         // create websocket
         socket = io();
+
+        socket.on('connect', ()=>{
+            socket.emit('join',{username: username, room:userId + user.id})
+        
+        })
 
         socket.on("chat", (chat) => {
             setMessages(messages => [...messages, chat])
@@ -21,7 +27,7 @@ const Chat = () => {
         return (() => {
             socket.disconnect()
         })
-    }, [])
+    }, [messages,dispatch,userId])
 
     const updateChatInput = (e) => {
         setChatInput(e.target.value)
@@ -29,7 +35,7 @@ const Chat = () => {
 
     const sendChat = (e) => {
         e.preventDefault()
-        socket.emit("chat", { user: user.username, msg: chatInput, userimg: user.imageUrl });
+        socket.emit("chat", { user: user.username, msg: chatInput, userimg: user.imageUrl, recipientId:userId, room: userId + user.id });
         setChatInput("")
     }
 

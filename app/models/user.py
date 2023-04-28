@@ -1,7 +1,32 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
+class Chat(db.Model):
+    __tablename__ = 'chats'
 
+    if environment == 'production':
+        __table_args__ = {'schema': SCHEMA}
+
+    id = db.Column(db.Integer, primary_key= True)
+    sender_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    recipient_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
+    message = db.Column(db.String(1500), nullable = False)
+    roomId = db.Column(db.Integer)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow())
+
+
+    def to_dict(self):
+        return{
+            'id':self.id,
+            'sender_id':self.sender_id,
+            'recipient_id':self.recipient_id,
+            'message':self.message,
+            'timestamp':self.timestamp,
+            
+        }   
+    def __repr__(self):
+        return '<Message {}>'.format(self.message)
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -23,6 +48,10 @@ class User(db.Model, UserMixin):
     reviews = db.relationship("Review", back_populates="user",
          cascade="all, delete-orphan")
     
+    messages_sent = db.relationship('Chat',foreign_keys ='Chat.sender_id', backref='author',lazy='dynamic')
+    messages_received = db.relationship('Chat', foreign_keys = 'Chat.recipient_id', backref= 'recipient', lazy='dynamic')
+ 
+       
     @property
     def password(self):
         return self.hashed_password

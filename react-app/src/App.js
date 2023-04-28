@@ -49,9 +49,6 @@ function App() {
                         <ProductHomePage product={product} query={query} />
                     </ProtectedRoute>
 
-                    <ProtectedRoute exact path="/chat">
-                    <Chat/>
-                    </ProtectedRoute>
 
                     <ProtectedRoute exact path="/users/:userId">
                 <ProfilePage/>
